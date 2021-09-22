@@ -32,7 +32,12 @@ env set upgrade_key 'if gpio input GPIOAO_3; then echo detect upgrade key; run u
 env set preboot 'run init_display;run setup_keys;run upgrade_key'
 
 ### Set up new environment
-env set bootcmd 'ext4load mmc 1:6 ${fdtaddr} /boot/dtbs/amlogic/meson-g12a-walmart-onn-streaming-box.dtb; ext4load mmc 1:6 ${loadaddr} /boot/Image; booti ${loadaddr} - ${fdtaddr};'
+env set loadaddr 0x8080000
+env set dtb_mem_addr 0x8000000
+# Used by fdt and rsvmem commands
+env set fdtaddr ${dtb_mem_addr}
+# booti uses ${loadaddr} and ${dtb_mem_addr} implicitly
+env set bootcmd 'ext4load mmc 1:6 ${dtb_mem_addr} /boot/dtbs/amlogic/meson-g12a-walmart-onn-streaming-box.dtb; ext4load mmc 1:6 ${loadaddr} /boot/Image; booti;'
 env set bootargs 'rw root=/dev/mmcblk1p6'
 
 ### Clean up script environment
