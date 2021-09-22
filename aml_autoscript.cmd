@@ -17,7 +17,7 @@ fatload usb 0 ${scratchaddr} abridged-aml-partitions.bin 0x4000
 mmc write ${scratchaddr} 0x12000 0x20
 
 # Create GPT with our own partitions
-gpt write mmc 1 'name=aml_reserved,start=0x2400000,size=0x4000000;name=env,start=0x39400000,size=0x800000;name=logo,start=0x3a400000,size=0x800000;name=factory,start=0x3fc00000,size=0x800000;name=misc,start=0x40c00000,size=0x200000;name=root,start=0x40e00000,size=0x100000000;'
+gpt write mmc 1 'name=aml_reserved,start=0x2400000,size=0x4000000;name=env,start=0x39400000,size=0x800000;name=logo,start=0x3a400000,size=0x800000;name=factory,start=0x3fc00000,size=0x800000,type=8F68CC74-C5E5-48DA-BE91-A0C8C15E9C80;name=misc,start=0x40c00000,size=0x200000,type=EF32A33B-A409-486C-9141-9FFB711F6266;name=root,start=0x40e00000,size=0x1911fbe00,type=B921B045-1DF0-41C3-AF44-4C6F280D3FAE;'
 
 # Clean up stock environment
 env default -a
