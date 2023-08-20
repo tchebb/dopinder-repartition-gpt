@@ -1,4 +1,0 @@
-aml_autoscript: Script that stock U-Boot config will run off a USB drive.
-abridged-aml-partitions.bin: Amlogic partition table containing only reserved,
-    env, logo, factory, and misc. Contains a dummy entry at index 0 to make
-    Amlogic's 0-based partition indices line up with GPT's 1-based ones.
